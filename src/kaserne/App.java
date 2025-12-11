@@ -22,6 +22,14 @@ public class App extends Application {
 
         database.connectToDB();
 
+
+        
+        
+        
+        
+        
+        
+        
         // --- Layout 1: Login ---
         Label loginLabel = new Label("Benutzer anmelden");
         TextField loginBenutzername = new TextField();
@@ -62,10 +70,11 @@ public class App extends Application {
         Button AusruestungButton = new Button("Ausrüstung");
         Button LuftfahrzeugButton = new Button("Luftfahrzeuge");
         Button DienstplanButton = new Button("Dienstpläne");
-        Button AbfragenButton = new Button("Abfragen");
+        Button AbfragenButton = new Button("Standort Abfragen");
+        Button AbmeldenButton = new Button("Abmelden");
 
         VBox AuswahlLayout = new VBox(10, KaserneButton, SoldatenButton, AbteilungenButton,
-                BodenfahrzeugeButton, AusruestungButton, DienstplanButton, LuftfahrzeugButton, AbfragenButton);
+                BodenfahrzeugeButton, AusruestungButton, DienstplanButton, LuftfahrzeugButton, AbfragenButton,AbmeldenButton);
         AuswahlLayout.setPadding(new Insets(20));
         AuswahlLayout.setAlignment(Pos.CENTER);
 
@@ -85,11 +94,13 @@ public class App extends Application {
         Scene tableScene = new Scene(tabelleLayout, 800, 500);
 
         // --- Layout 5: Abfragen ---
+        Label StandortAbrageLabel = new Label("Geben sie ein Standort an um die Soldaten abzufragen");
         TextField AbfrageText = new TextField();
         AbfrageText.setPromptText("Standort eingeben...");
         Button AbfrageSuchenButton = new Button("Suchen");
+        Button AbfrageZurückButton = new Button("Zurück");
 
-        VBox AbfragenLayout = new VBox(10, AbfrageText, AbfrageSuchenButton);
+        VBox AbfragenLayout = new VBox(10,StandortAbrageLabel, AbfrageText, AbfrageSuchenButton,AbfrageZurückButton);
         AbfragenLayout.setPadding(new Insets(20));
         AbfragenLayout.setAlignment(Pos.CENTER);
 
@@ -108,15 +119,17 @@ public class App extends Application {
 
         neuerAccountButton.setOnAction(e -> primaryStage.setScene(neuerBenutzerScene));
         zurückLoginButton.setOnAction(e -> primaryStage.setScene(loginScene));
-
+        AbmeldenButton.setOnAction(e -> primaryStage.setScene(loginScene));
+        AbfrageZurückButton.setOnAction(e -> primaryStage.setScene(AuswahlScene));
+        zurückZuAuswahl.setOnAction(e -> primaryStage.setScene(AuswahlScene));          
+        
         speichernButton.setOnAction(e -> {
             if (!neuerBenutzername.getText().isEmpty() && !neuesPasswort.getText().isEmpty()) {
                 database.benutzerErstellen(neuerBenutzername.getText(), neuesPasswort.getText());
                 primaryStage.setScene(loginScene);
             }
         });
-
-        zurückZuAuswahl.setOnAction(e -> primaryStage.setScene(AuswahlScene));
+   
 
         // Tabellen-Buttons
         KaserneButton.setOnAction(e -> { zeigeTabelle("Kasernen", table); primaryStage.setScene(tableScene); });
@@ -154,6 +167,16 @@ public class App extends Application {
             primaryStage.setScene(tableScene);
         });
 
+loginScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+neuerBenutzerScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+AuswahlScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+tableScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+AbfragenScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        
+        
+        
+        
+        
         primaryStage.setTitle("Kaserne Verwaltung");
         primaryStage.setScene(loginScene);
         primaryStage.show();
@@ -183,4 +206,9 @@ public class App extends Application {
 
         table.setItems(daten);
     }
+       
+    
+    
+    
+    
 }

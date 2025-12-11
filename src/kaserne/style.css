@@ -1,57 +1,20 @@
-.button {
-    -fx-background-color: #4CAF50;
-    -fx-text-fill: white;
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #2c2f33;
 }
-
-
-.text-field {
-    -fx-background-color: #f0f0f0;
-    -fx-border-color: #cccccc;
-    -fx-font-size: 14px;
-}
-
 
 .label {
-    -fx-text-fill: #333333;
-    -fx-font-weight: bold;
-}
-
-
-.root {
-    -fx-background-color: #e0e0e0;
-}
-
-
-.table-view {
-    -fx-background-color: transparent;
-}
-
-
-.table-row-cell {
-    -fx-background-color: white;
-    -fx-text-fill: black;
-}
-
-
-.table-row-cell:selected {
-    -fx-background-color: #4a90e2;
     -fx-text-fill: white;
+    -fx-font-size: 16px;
 }
 
-
-.table-cell {
-    -fx-border-color: #d0d0d0;
-    -fx-text-fill: black;
-    -fx-background-color: white;
-}
-
-
-.table-view .column-header-background {
-    -fx-background-color: #2b2b2b;
-}
-
-
-.table-view .column-header .label {
-    -fx-text-fill: black;
+.button {
+    -fx-background-color: #7289da;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
+}
+
+.text-field, .password-field {
+    -fx-background-color: white;
+    -fx-border-color: #7289da;
 }
